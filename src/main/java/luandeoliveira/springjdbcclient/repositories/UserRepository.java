@@ -1,6 +1,8 @@
 package luandeoliveira.springjdbcclient.repositories;
 
 import luandeoliveira.springjdbcclient.entities.User;
+import luandeoliveira.springjdbcclient.entities.UserAuthority;
+import luandeoliveira.springjdbcclient.mappers.UserResultExtractor;
 import luandeoliveira.springjdbcclient.repositories.constants.UserConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.simple.JdbcClient;
@@ -18,5 +20,10 @@ public class UserRepository {
         return jdbcClient.sql(UserConstants.SQL_FIND_ALL_USERS)
                 .query(User.class)
                 .list();
+    }
+
+    public List<UserAuthority> findAllUsersAuthority(){
+        return jdbcClient.sql(UserConstants.SQL_FIND_ALL_USERS_AUTHORITY)
+                .query(new UserResultExtractor());
     }
 }

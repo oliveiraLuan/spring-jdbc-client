@@ -3,6 +3,7 @@ package luandeoliveira.springjdbcclient.services;
 import luandeoliveira.springjdbcclient.dto.UserDTO;
 import luandeoliveira.springjdbcclient.entities.Authority;
 import luandeoliveira.springjdbcclient.entities.User;
+import luandeoliveira.springjdbcclient.entities.UserAuthority;
 import luandeoliveira.springjdbcclient.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,4 +24,8 @@ public class UserService {
         return users.stream().map(user -> new UserDTO(user, authorities)).collect(Collectors.toList());
     }
 
+
+    public List<UserAuthority> findAllUsersAuthorities() {
+        return userRepository.findAllUsersAuthority();
+    }
 }

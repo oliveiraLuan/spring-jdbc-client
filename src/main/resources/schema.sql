@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS USERS(
     enabled BOOLEAN NOT NULL
 );
 
-INSERT INTO USERS(username, password, enabled) VALUES('loliveirap', 'c2XpY3VyaW9zb2Vt', true);
+--INSERT INTO USERS(username, password, enabled) VALUES('loliveirap', 'c2XpY3VyaW9zb2Vt', true);
 
 CREATE TABLE IF NOT EXISTS AUTHORITIES(
    username VARCHAR(50) NOT NULL,
@@ -13,5 +13,5 @@ CREATE TABLE IF NOT EXISTS AUTHORITIES(
    CONSTRAINT USERNAME_AUTHORITY UNIQUE(username, authority)
 );
 
-INSERT INTO AUTHORITIES(username, authority) VALUES('loliveirap', 'ROLE_ADMIN');
-INSERT INTO AUTHORITIES(username, authority) VALUES('loliveirap', 'ROLE_USER');
+--INSERT INTO AUTHORITIES(username, authority) VALUES('loliveirap', 'ROLE_ADMIN');
+--INSERT INTO AUTHORITIES(username, authority) VALUES('loliveirap', 'ROLE_USER');

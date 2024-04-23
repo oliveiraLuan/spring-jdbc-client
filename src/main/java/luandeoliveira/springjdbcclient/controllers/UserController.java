@@ -2,6 +2,7 @@ package luandeoliveira.springjdbcclient.controllers;
 
 import luandeoliveira.springjdbcclient.dto.UserDTO;
 import luandeoliveira.springjdbcclient.entities.User;
+import luandeoliveira.springjdbcclient.entities.UserAuthority;
 import luandeoliveira.springjdbcclient.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,5 +20,10 @@ public class UserController {
     public ResponseEntity<List<UserDTO>> findAll(){
         List<UserDTO> users = userService.findAll();
         return ResponseEntity.ok(users);
+    }
+
+    @GetMapping("/users_authorities")
+    public List<UserAuthority> findAllUsersAuthorities(){
+        return userService.findAllUsersAuthorities  ();
     }
 }
