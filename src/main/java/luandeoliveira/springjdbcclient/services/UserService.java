@@ -1,5 +1,6 @@
 package luandeoliveira.springjdbcclient.services;
 
+import luandeoliveira.springjdbcclient.dto.UserAuthorityDTO;
 import luandeoliveira.springjdbcclient.dto.UserDTO;
 import luandeoliveira.springjdbcclient.entities.Authority;
 import luandeoliveira.springjdbcclient.entities.User;
@@ -25,7 +26,8 @@ public class UserService {
     }
 
 
-    public List<UserAuthority> findAllUsersAuthorities() {
-        return userRepository.findAllUsersAuthority();
+    public List<UserAuthorityDTO> findAllUsersAuthorities() {
+        List<UserAuthority> users = userRepository.findAllUsersAuthority();
+        return users.stream().map(user -> new UserAuthorityDTO(user)).collect(Collectors.toList());
     }
 }

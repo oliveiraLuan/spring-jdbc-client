@@ -1,5 +1,6 @@
 package luandeoliveira.springjdbcclient.controllers;
 
+import luandeoliveira.springjdbcclient.dto.UserAuthorityDTO;
 import luandeoliveira.springjdbcclient.dto.UserDTO;
 import luandeoliveira.springjdbcclient.entities.User;
 import luandeoliveira.springjdbcclient.entities.UserAuthority;
@@ -23,7 +24,7 @@ public class UserController {
     }
 
     @GetMapping("/users_authorities")
-    public List<UserAuthority> findAllUsersAuthorities(){
-        return userService.findAllUsersAuthorities  ();
+    public List<UserAuthorityDTO> findAllUsersAuthorities(){
+        return userService.findAllUsersAuthorities();
     }
 }
