@@ -22,12 +22,17 @@ public class UserService {
     public List<UserDTO> findAll(){
         List<User> users = userRepository.findAll();
         List<Authority> authorities = new ArrayList<>();
-        return users.stream().map(user -> new UserDTO(user, authorities)).collect(Collectors.toList());
+        return users.stream().map(user -> new UserDTO(user)).collect(Collectors.toList());
     }
 
 
     public List<UserAuthorityDTO> findAllUsersAuthorities() {
         List<UserAuthority> users = userRepository.findAllUsersAuthority();
         return users.stream().map(user -> new UserAuthorityDTO(user)).collect(Collectors.toList());
+    }
+
+    public UserDTO findByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+        return new UserDTO(user);
     }
 }

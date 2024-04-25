@@ -11,13 +11,9 @@ public class UserDTO {
     private List<Authority> authorities;
     private Boolean enabled;
 
-    public UserDTO(User user, List<Authority> authorities) {
+    public UserDTO(User user) {
         this.username = user.username();
         this.enabled = user.enabled();
-
-        for(Authority authority : authorities){
-            this.authorities.add(authority);
-        }
     }
 
     public String getUsername() {

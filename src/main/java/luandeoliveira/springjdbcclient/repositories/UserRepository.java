@@ -6,7 +6,6 @@ import luandeoliveira.springjdbcclient.mappers.UserResultExtractor;
 import luandeoliveira.springjdbcclient.repositories.constants.UserConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.simple.JdbcClient;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,5 +24,12 @@ public class UserRepository {
     public List<UserAuthority> findAllUsersAuthority(){
         return jdbcClient.sql(UserConstants.SQL_FIND_ALL_USERS_AUTHORITY)
                 .query(new UserResultExtractor());
+    }
+
+    public User findByUsername(String username) {
+        return jdbcClient.sql(UserConstants.SQL_FIND_USER_BY_USERNAME)
+                .param(username)
+                .query(User.class)
+                .single();
     }
 }
