@@ -32,4 +32,13 @@ public class UserRepository {
                 .query(User.class)
                 .single();
     }
+
+    public void deleteByUsername(String username) {
+        Integer updated = jdbcClient
+                .sql(UserConstants.SQL_DELETE_USER_BY_USERNAME)
+                .param(username).update();
+        if(updated == 0){
+            throw new RuntimeException("User not found!");
+        }
+    }
 }

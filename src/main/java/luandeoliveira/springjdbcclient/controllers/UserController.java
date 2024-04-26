@@ -1,5 +1,6 @@
 package luandeoliveira.springjdbcclient.controllers;
 
+import jakarta.servlet.http.HttpServletRequest;
 import luandeoliveira.springjdbcclient.dto.UserAuthorityDTO;
 import luandeoliveira.springjdbcclient.dto.UserDTO;
 import luandeoliveira.springjdbcclient.entities.User;
@@ -7,10 +8,11 @@ import luandeoliveira.springjdbcclient.entities.UserAuthority;
 import luandeoliveira.springjdbcclient.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriBuilder;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -30,8 +32,14 @@ public class UserController {
     }
 
     @GetMapping(value = "/{username}")
-        public UserDTO findByUsername(@PathVariable String username){
+    public UserDTO findByUsername(@PathVariable String username){
         UserDTO dto = userService.findByUsername(username);
         return dto;
+    }
+
+    @DeleteMapping(value = "/{username}")
+    public ResponseEntity<Void> delete(@PathVariable String username){
+        userService.deleteByUsername(username);
+        return ResponseEntity.noContent().build();
     }
 }

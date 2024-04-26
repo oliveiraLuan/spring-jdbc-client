@@ -35,4 +35,8 @@ public class UserService {
         User user = userRepository.findByUsername(username);
         return new UserDTO(user);
     }
+
+    public void deleteByUsername(String username) {
+        userRepository.deleteByUsername(username);
+    }
 }
