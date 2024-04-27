@@ -3,13 +3,18 @@ package luandeoliveira.springjdbcclient.dto;
 import luandeoliveira.springjdbcclient.entities.Authority;
 import luandeoliveira.springjdbcclient.entities.User;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class UserDTO {
+public class UserDTO implements Serializable {
 
     private String username;
     private List<Authority> authorities;
     private Boolean enabled;
+
+    public UserDTO(){
+
+    }
 
     public UserDTO(User user) {
         this.username = user.username();

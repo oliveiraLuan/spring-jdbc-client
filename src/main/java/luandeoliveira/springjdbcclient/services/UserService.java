@@ -2,6 +2,7 @@ package luandeoliveira.springjdbcclient.services;
 
 import luandeoliveira.springjdbcclient.dto.UserAuthorityDTO;
 import luandeoliveira.springjdbcclient.dto.UserDTO;
+import luandeoliveira.springjdbcclient.dto.UserInsertDTO;
 import luandeoliveira.springjdbcclient.entities.Authority;
 import luandeoliveira.springjdbcclient.entities.User;
 import luandeoliveira.springjdbcclient.entities.UserAuthority;
@@ -34,6 +35,10 @@ public class UserService {
     public UserDTO findByUsername(String username) {
         User user = userRepository.findByUsername(username);
         return new UserDTO(user);
+    }
+
+    public void insert(UserInsertDTO insertDTO){
+        userRepository.insert(insertDTO);
     }
 
     public void deleteByUsername(String username) {

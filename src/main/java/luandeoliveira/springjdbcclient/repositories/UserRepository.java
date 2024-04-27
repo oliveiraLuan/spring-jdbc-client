@@ -1,5 +1,7 @@
 package luandeoliveira.springjdbcclient.repositories;
 
+import luandeoliveira.springjdbcclient.dto.UserDTO;
+import luandeoliveira.springjdbcclient.dto.UserInsertDTO;
 import luandeoliveira.springjdbcclient.entities.User;
 import luandeoliveira.springjdbcclient.entities.UserAuthority;
 import luandeoliveira.springjdbcclient.mappers.UserResultExtractor;
@@ -31,6 +33,12 @@ public class UserRepository {
                 .param(username)
                 .query(User.class)
                 .single();
+    }
+
+    public void insert(UserInsertDTO insertDTO){
+        jdbcClient.sql(UserConstants.SQL_INSERT_USER)
+                .params(insertDTO.getUsername(), insertDTO.getPassword(), insertDTO.getEnabled())
+                .update();
     }
 
     public void deleteByUsername(String username) {

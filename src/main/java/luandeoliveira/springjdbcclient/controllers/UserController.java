@@ -1,21 +1,19 @@
 package luandeoliveira.springjdbcclient.controllers;
 
-import jakarta.servlet.http.HttpServletRequest;
 import luandeoliveira.springjdbcclient.dto.UserAuthorityDTO;
 import luandeoliveira.springjdbcclient.dto.UserDTO;
-import luandeoliveira.springjdbcclient.entities.User;
-import luandeoliveira.springjdbcclient.entities.UserAuthority;
+import luandeoliveira.springjdbcclient.dto.UserInsertDTO;
 import luandeoliveira.springjdbcclient.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriBuilder;
-import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/users")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -35,6 +33,17 @@ public class UserController {
     public UserDTO findByUsername(@PathVariable String username){
         UserDTO dto = userService.findByUsername(username);
         return dto;
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> insert(@RequestBody UserInsertDTO insertDTO){
+        userService.insert(insertDTO);
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/username")
+                .buildAndExpand()
+                .toUri();
+        return ResponseEntity.created(uri).build();
     }
 
     @DeleteMapping(value = "/{username}")
