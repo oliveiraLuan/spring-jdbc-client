@@ -44,4 +44,9 @@ public class UserService {
     public void deleteByUsername(String username) {
         userRepository.deleteByUsername(username);
     }
+
+    public void update(UserInsertDTO updateDTO) {
+        User user = new User(updateDTO.getUsername(), updateDTO.getPassword(), updateDTO.getEnabled());
+        userRepository.update(user);
+    }
 }

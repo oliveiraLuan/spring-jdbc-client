@@ -49,4 +49,11 @@ public class UserRepository {
             throw new RuntimeException("User not found!");
         }
     }
+
+    public void update(User user) {
+        jdbcClient
+                .sql(UserConstants.SQL_UPDATE_USER)
+                .params(user.password(), user.enabled(), user.username())
+                .update();
+    }
 }

@@ -47,6 +47,12 @@ public class UserController {
         return ResponseEntity.created(uri).build();
     }
 
+    @PutMapping
+    public ResponseEntity<Void> update(@RequestBody UserInsertDTO updateDTO){
+        userService.update(updateDTO);
+        return ResponseEntity.ok().build();
+    }
+
     @DeleteMapping(value = "/{username}")
     public ResponseEntity<Void> delete(@PathVariable String username){
         userService.deleteByUsername(username);
