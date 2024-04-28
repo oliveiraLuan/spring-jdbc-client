@@ -7,6 +7,7 @@ import luandeoliveira.springjdbcclient.entities.Authority;
 import luandeoliveira.springjdbcclient.entities.User;
 import luandeoliveira.springjdbcclient.entities.UserAuthority;
 import luandeoliveira.springjdbcclient.repositories.UserRepository;
+import luandeoliveira.springjdbcclient.services.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +43,10 @@ public class UserService {
     }
 
     public void deleteByUsername(String username) {
-        userRepository.deleteByUsername(username);
+        Integer response = userRepository.deleteByUsername(username);
+        if(response == 0){
+            throw new UserNotFoundException("Usuário não encontrado.");
+        }
     }
 
     public void update(UserInsertDTO updateDTO) {

@@ -41,13 +41,11 @@ public class UserRepository {
                 .update();
     }
 
-    public void deleteByUsername(String username) {
+    public Integer deleteByUsername(String username) {
         Integer updated = jdbcClient
                 .sql(UserConstants.SQL_DELETE_USER_BY_USERNAME)
                 .param(username).update();
-        if(updated == 0){
-            throw new RuntimeException("User not found!");
-        }
+        return updated;
     }
 
     public void update(User user) {
